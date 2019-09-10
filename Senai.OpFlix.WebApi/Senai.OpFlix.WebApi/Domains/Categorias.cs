@@ -12,7 +12,10 @@ namespace Senai.OpFlix.WebApi.Domains
 
         public int IdCategoria { get; set; }
         public string Categoria { get; set; }
+        //public int? IdUsuario { get; set; }
 
         public ICollection<Lancamentos> Lancamentos { get; set; }
+
+        //public Usuarios Usuario { get; set; }
     }
 }

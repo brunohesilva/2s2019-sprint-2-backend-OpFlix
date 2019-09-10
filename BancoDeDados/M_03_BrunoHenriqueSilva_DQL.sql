@@ -1,11 +1,9 @@
-USE M_OpFlixFinal;
+USE M_OpFlix;
 
-SELECT * FROM TipoUsuarios ORDER BY IdTipoUsuario;
 SELECT * FROM Usuarios ORDER BY IdUsuario;
 SELECT * FROM Categorias ORDER BY IdCategoria;
-SELECT * FROM TipoFilmesSeries ORDER BY IdTipoFilmeSerie;
-SELECT * FROM MeiosVeiculacao ORDER BY IdMeioVeiculacao;
-SELECT * FROM Lancamentos ORDER BY IdFilmeSerie;
+SELECT * FROM PlataformasMidias ORDER BY IdPlataformaMidia;
+SELECT * FROM Lancamentos ORDER BY IdLancamento;
 SELECT * FROM OndeLanca;
 
 CREATE PROCEDURE BuscaLinhas
@@ -13,7 +11,7 @@ CREATE PROCEDURE BuscaLinhas
 AS 
 SELECT COUNT(*)
 FROM Lancamentos
-WHERE IdFilmeSerie >= 1
+WHERE IdLancamento >= 1
 
 EXECUTE BuscaLinhas '1';
 DROP PROCEDURE BuscaLinhas;
@@ -34,12 +32,3 @@ WHERE IdCategoria >= 1
 
 EXECUTE BuscaCategorias'1';
 DROP PROCEDURE BuscaCategorias;
-
-
-
-
-
-
-
-	
-
