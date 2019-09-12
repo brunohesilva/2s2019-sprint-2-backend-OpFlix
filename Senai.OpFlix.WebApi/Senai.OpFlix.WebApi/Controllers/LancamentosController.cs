@@ -28,5 +28,65 @@ namespace Senai.OpFlix.WebApi.Controllers
             LancamentoRepository.Cadastrar(lancamento);
             return Ok();
         }
+
+        [HttpGet]
+        public IActionResult Listar()
+        {
+            return Ok(LancamentoRepository.Listar());
+        }
+
+        [HttpGet("{id}")]
+        public IActionResult BuscarPorId(int id)
+        {
+            Lancamentos Lancamento = LancamentoRepository.BuscarPorId(id);
+            if (Lancamento == null)
+            {
+                return NotFound();
+            }
+            return Ok(Lancamento);
+        }
+
+        [HttpPut("{id}")]
+        public IActionResult Atualizar(int id, Lancamentos lancamento)
+        {
+            try
+            {
+                Lancamentos lancamentoBuscado = LancamentoRepository.BuscarPorId(id);
+                if (lancamentoBuscado == null)
+                    return NotFound();
+                lancamento.IdLancamento = id;
+                LancamentoRepository.Atualizar(lancamento);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { mensagem = ex.Message });
+            }
+        }
+
+        //[HttpPut("{id}")]
+        //public IActionResult Atualizar(int id, Categorias categoria)
+        //{
+        //    try
+        //    {
+        //        Categorias categoriaBuscada = CategoriaRepository.BuscarPorId(id);
+        //        if (categoriaBuscada == null)
+        //            return NotFound();
+        //        categoria.IdCategoria = id;
+        //        CategoriaRepository.Atualizar(categoria);
+        //        return Ok();
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return BadRequest(new { mensagem = ex.Message });
+        //    }
+        //}
+
+        [HttpDelete("{id}")]
+        public IActionResult Deletar(int id)
+        {
+            LancamentoRepository.Deletar(id);
+            return Ok();
+        }
     }
 }
