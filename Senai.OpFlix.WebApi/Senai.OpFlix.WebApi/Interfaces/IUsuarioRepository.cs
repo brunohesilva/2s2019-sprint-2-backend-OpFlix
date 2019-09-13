@@ -10,5 +10,9 @@ namespace Senai.OpFlix.WebApi.Interfaces
     interface IUsuarioRepository
     {
         Usuarios BuscarPorEmailESenha(LoginViewModel login);
+
+        void CadastrarAdmin(Usuarios usuario);
+
+        void Cadastrar(Usuarios usuario);
     }
 }

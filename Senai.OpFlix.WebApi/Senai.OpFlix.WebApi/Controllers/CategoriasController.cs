@@ -24,6 +24,7 @@ namespace Senai.OpFlix.WebApi.Controllers
             CategoriaRepository = new CategoriaRepository();
         }
 
+        [Authorize(Roles = "ADMINISTRADOR")]
         [HttpPost]
         public IActionResult Cadastrar(Categorias categoria)
         {
@@ -38,6 +39,7 @@ namespace Senai.OpFlix.WebApi.Controllers
             return Ok(CategoriaRepository.Listar());
         }
 
+        [Authorize(Roles = "ADMINISTRADOR")]
         [HttpPut("{id}")]
         public IActionResult Atualizar(int id, Categorias categoria)
         {

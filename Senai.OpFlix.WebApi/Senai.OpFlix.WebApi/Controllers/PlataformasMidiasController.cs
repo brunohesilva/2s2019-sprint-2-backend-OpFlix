@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Senai.OpFlix.WebApi.Domains;
@@ -22,6 +23,7 @@ namespace Senai.OpFlix.WebApi.Controllers
             PlataformaMidiaRepository = new PlataformaMidiaRepository();
         }
 
+        [Authorize(Roles = "ADMINISTRADOR")]
         [HttpPost]
         public IActionResult Cadastrar(PlataformasMidias plataformamidia)
         {
@@ -29,12 +31,14 @@ namespace Senai.OpFlix.WebApi.Controllers
             return Ok();
         }
 
+        [Authorize(Roles = "ADMINISTRADOR")]
         [HttpGet]
         public IActionResult Listar()
         {
             return Ok(PlataformaMidiaRepository.Listar());
         }
 
+        [Authorize(Roles = "ADMINISTRADOR")]
         [HttpPut("{id}")]
         public IActionResult Atualizar(int id, PlataformasMidias plataformamidia)
         {
@@ -46,6 +50,23 @@ namespace Senai.OpFlix.WebApi.Controllers
                 plataformamidia.IdPlataformaMidia = id;
                 PlataformaMidiaRepository.Atualizar(plataformamidia);
                 return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { mensagem = ex.Message });
+            }
+        }
+
+        [Authorize(Roles = "ADMINISTRADOR")]
+        [HttpGet("{nome}")]
+        public IActionResult Filtrar(string nome)
+        {
+            try
+            {
+                PlataformasMidias plataformamidia = PlataformaMidiaRepository.FiltrarPlataforma(nome);
+                if (plataformamidia == null)
+                    return NotFound();
+                return Ok(plataformamidia);
             }
             catch (Exception ex)
             {

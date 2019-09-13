@@ -43,6 +43,15 @@ namespace Senai.OpFlix.WebApi.Repositories
             }
         }
 
+        public PlataformasMidias FiltrarPlataforma(string nome)
+        {
+            using (OpFlixContext ctx = new OpFlixContext())
+            {
+                PlataformasMidias PlataformaMidiaBuscada = ctx.PlataformasMidias.FirstOrDefault(x => x.PlataformaMidia == nome);
+                return PlataformaMidiaBuscada;
+            }
+        }
+
         public List<PlataformasMidias> Listar()
         {
             using (OpFlixContext ctx = new OpFlixContext())

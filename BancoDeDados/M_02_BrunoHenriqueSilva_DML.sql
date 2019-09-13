@@ -73,6 +73,10 @@ INSERT INTO OndeLanca (IdLancamento, IdPlataformaMidia)
 VALUES (9, 5);
 Select * From OndeLanca;
 
+UPDATE Usuarios
+SET	Senha = '654321' 
+WHERE IdUsuario = 4;
+
 
 
 
