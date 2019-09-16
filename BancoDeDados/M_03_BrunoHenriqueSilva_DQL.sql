@@ -1,3 +1,5 @@
+
+
 USE M_OpFlix;
 
 SELECT * FROM Usuarios ORDER BY IdUsuario;
@@ -5,6 +7,8 @@ SELECT * FROM Categorias ORDER BY IdCategoria;
 SELECT * FROM PlataformasMidias ORDER BY IdPlataformaMidia;
 SELECT * FROM Lancamentos ORDER BY IdLancamento;
 SELECT * FROM OndeLanca;
+SELECT * FROM Favoritos;
+
 
 CREATE PROCEDURE BuscaLinhas
 @QuantidadesTuplas VARCHAR(200)

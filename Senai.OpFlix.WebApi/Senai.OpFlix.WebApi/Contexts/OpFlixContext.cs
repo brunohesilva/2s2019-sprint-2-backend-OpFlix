@@ -19,6 +19,7 @@ namespace Senai.OpFlix.WebApi.Domains
         public virtual DbSet<Lancamentos> Lancamentos { get; set; }
         public virtual DbSet<PlataformasMidias> PlataformasMidias { get; set; }
         public virtual DbSet<Usuarios> Usuarios { get; set; }
+        public virtual DbSet<Favoritos> Favoritos { get; set; }
 
         // Unable to generate entity type for table 'dbo.OndeLanca'. Please see the warning messages.
 
@@ -124,6 +125,19 @@ namespace Senai.OpFlix.WebApi.Domains
                     .HasMaxLength(255)
                     .IsUnicode(false);
             });
+
+            modelBuilder.Entity<Favoritos>().HasKey(p => new { p.IdUsuario, p.IdLancamento });
+
+            modelBuilder.Entity<Favoritos>()
+            .HasOne<Usuarios>(sc => sc.Usuario)
+            .WithMany(s => s.Favoritos)
+            .HasForeignKey(sc => sc.IdUsuario);
+
+            modelBuilder.Entity<Favoritos>()
+            .HasOne<Lancamentos>(sc => sc.Lancamento)
+            .WithMany(s => s.Favoritos)
+            .HasForeignKey(sc => sc.IdLancamento);
+
         }
     }
 }

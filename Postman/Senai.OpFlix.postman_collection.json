@@ -79,6 +79,37 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "Usuarios.Cadastrar",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\t\n\t\"Nome\" : \"Seila\",\n\t\"Email\" : \"sl@gmail.com\",\n\t\"Senha\" : \"123456789\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/usuarioscliente",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"usuarioscliente"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -432,6 +463,62 @@
 								"api",
 								"lancamentos",
 								"10"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Favoritos",
+			"item": [
+				{
+					"name": "Favoritos.Listar",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/favoritos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"favoritos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Favoritos.Favoritar",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"idUsuario\" : \"5\",\n\t\"idLancamento\" : \"5\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/favoritos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"favoritos"
 							]
 						}
 					},

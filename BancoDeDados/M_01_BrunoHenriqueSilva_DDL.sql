@@ -7,7 +7,7 @@ CREATE TABLE Usuarios(
 	,Nome VARCHAR(255) NOT NULL UNIQUE
 	,Email VARCHAR(100) NOT NULL UNIQUE
 	,Senha VARCHAR(255) NOT NULL
-	,Permissao VARCHAR(255) 	
+	,Permissao VARCHAR(255) 
 );
 
 CREATE TABLE Categorias(
@@ -35,3 +35,12 @@ CREATE TABLE OndeLanca(
 	IdLancamento INT FOREIGN KEY REFERENCES Lancamentos(IdLancamento)	
 	,IdPlataformaMidia INT FOREIGN KEY REFERENCES PlataformasMidias(IdPlataformaMidia)
 );
+
+ALTER TABLE Usuarios
+  ADD CONSTRAINT Permissao
+  DEFAULT ('CLIENTE') FOR Permissao;
+
+CREATE TABLE Favoritos(
+	IdUsuario INT FOREIGN KEY REFERENCES Usuarios (IdUsuario)
+	,IdLancamento INT FOREIGN KEY REFERENCES Lancamentos (IdLancamento) 
+)

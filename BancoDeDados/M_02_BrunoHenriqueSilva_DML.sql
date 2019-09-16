@@ -77,6 +77,14 @@ UPDATE Usuarios
 SET	Senha = '654321' 
 WHERE IdUsuario = 4;
 
+INSERT INTO Usuarios (Nome, Email, Senha)
+VALUES ('Rafael', 'rafael@email.com', '123456');
+
+DELETE FROM Usuarios
+WHERE IdUsuario = '8';
+
+	
+
 
 
 
