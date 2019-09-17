@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Senai.OpFlix.WebApi.Domains;
@@ -21,13 +22,24 @@ namespace Senai.OpFlix.WebApi.Controllers
         {
             FavoritoRepository = new FavoritoRepository();
         }
-  
+
+        /// <summary>
+        /// Lista os favoritos
+        /// </summary>
+        /// <returns>Lista de Favoritos</returns>
+        [Authorize(Roles = "ADMINISTRADOR")]
         [HttpGet]
         public IActionResult Listar()
         {
             return Ok(FavoritoRepository.Listar());
         }
-        
+
+        /// <summary>
+        /// Cadastar um favorito
+        /// </summary>
+        /// <param name="favoritos">Favoritos</param>
+        /// <returns>Adiociona o favorito á uma lista</returns>
+        [Authorize(Roles = "ADMINISTRADOR")]
         [HttpPost]
         public IActionResult Favoritar(Favoritos favoritos)
         {

@@ -22,6 +22,11 @@ namespace Senai.OpFlix.WebApi.Controllers
             UsuarioClienteRepository = new UsuarioClienteRepository();
         }
 
+        /// <summary>
+        /// Cadastar um Usuário CLIENTE
+        /// </summary>
+        /// <param name="usuario">Usuarios</param>
+        /// <returns>Ok</returns>
         [HttpPost]
         public IActionResult Cadastrar(Usuarios usuario)
         {

@@ -26,6 +26,11 @@ namespace Senai.OpFlix.WebApi.Controllers
             UsuarioRepository = new UsuarioRepository();
         }
 
+        /// <summary>
+        /// Loga um Usuario cadastrado
+        /// </summary>
+        /// <param name="login">Login</param>
+        /// <returns>Token de Validação</returns>
         [HttpPost]
         public IActionResult Login(LoginViewModel login)
         {
@@ -67,6 +72,7 @@ namespace Senai.OpFlix.WebApi.Controllers
             {
                 return BadRequest(new { mensagem = "Erro ao logar." + ex.Message });
             }
+            
         }
     }
 }

@@ -13,6 +13,7 @@ namespace Senai.OpFlix.WebApi.Repositories
     {
         private string StringConexao = "Data Source=.\\SqlExpress; initial catalog=M_OpFlix;User Id=sa;Pwd=132;";
 
+        //buscar email e senha do usuarios
         public Usuarios BuscarPorEmailESenha(LoginViewModel login)
         {
             using (OpFlixContext ctx = new OpFlixContext())
@@ -24,6 +25,7 @@ namespace Senai.OpFlix.WebApi.Repositories
             }
         }
 
+        //cadastrar usuarios admin
         public void CadastrarAdmin(Usuarios usuario)
         {
             string Query = "INSERT INTO Usuarios(Nome, Email, Senha, Permissao) VALUES (@Nome, @Email, @Senha, @Permissao)";

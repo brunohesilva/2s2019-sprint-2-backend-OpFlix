@@ -23,6 +23,11 @@ namespace Senai.OpFlix.WebApi.Controllers
             PlataformaMidiaRepository = new PlataformaMidiaRepository();
         }
 
+        /// <summary>
+        /// Cadastra uma Plataforma ou Mídia 
+        /// </summary>
+        /// <param name="plataformamidia">PlataformasMidias</param>
+        /// <returns>Ok</returns>
         [Authorize(Roles = "ADMINISTRADOR")]
         [HttpPost]
         public IActionResult Cadastrar(PlataformasMidias plataformamidia)
@@ -31,6 +36,10 @@ namespace Senai.OpFlix.WebApi.Controllers
             return Ok();
         }
 
+        /// <summary>
+        /// Lista as Plataformas ou Mídias
+        /// </summary>
+        /// <returns>Lista de Plataformas ou Mídia</returns>
         [Authorize(Roles = "ADMINISTRADOR")]
         [HttpGet]
         public IActionResult Listar()
@@ -38,6 +47,12 @@ namespace Senai.OpFlix.WebApi.Controllers
             return Ok(PlataformaMidiaRepository.Listar());
         }
 
+        /// <summary>
+        /// Atuliza uma Plataforma ou Mídia
+        /// </summary>
+        /// <param name="id">Busca a Plataforma ou Mídia pelo Id</param>
+        /// <param name="plataformamidia">Atualiza a Plataforma ou Mídia</param>
+        /// <returns>Ok</returns>
         [Authorize(Roles = "ADMINISTRADOR")]
         [HttpPut("{id}")]
         public IActionResult Atualizar(int id, PlataformasMidias plataformamidia)
@@ -57,6 +72,11 @@ namespace Senai.OpFlix.WebApi.Controllers
             }
         }
 
+        /// <summary>
+        /// Filtra a Plataforma ou Mídia pelo nome
+        /// </summary>
+        /// <param name="nome">PlataformasMidias</param>
+        /// <returns>PlataformasMidias</returns>
         [Authorize(Roles = "ADMINISTRADOR")]
         [HttpGet("{nome}")]
         public IActionResult Filtrar(string nome)

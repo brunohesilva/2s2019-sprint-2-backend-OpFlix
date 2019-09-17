@@ -12,29 +12,21 @@ namespace Senai.OpFlix.WebApi.Repositories
     {
         private string StringConexao = "Data Source=.\\SqlExpress; initial catalog=M_OpFlix;User Id=sa;Pwd=132;";
 
+        //atualizar lançamento
         public void Atualizar(Lancamentos lancamento)
         {
             using (OpFlixContext ctx = new OpFlixContext())
             {
                 Lancamentos LancamentoBuscado = ctx.Lancamentos.FirstOrDefault(x => x.IdLancamento == lancamento.IdLancamento);
+                // update lancamentos set lancamento = @lancamento
                 LancamentoBuscado.Titulo = lancamento.Titulo;
+                // insert - add, delete - remove, update - update
                 ctx.Lancamentos.Update(LancamentoBuscado);
+                // efetivar
                 ctx.SaveChanges();
             }
         }
-
-        //public void Atualizar(Categorias categoria)
-        //{
-        //    using (OpFlixContext ctx = new OpFlixContext())
-        //    {
-        //        Categorias CategoriaBuscada = ctx.Categorias.FirstOrDefault(x => x.IdCategoria == categoria.IdCategoria);
-        //        CategoriaBuscada.Categoria = categoria.Categoria;
-        //        ctx.Categorias.Update(CategoriaBuscada);
-        //        ctx.SaveChanges();
-        //    }
-
-        //}
-
+        // buscar lançamento por id
         public Lancamentos BuscarPorId(int id)
         {
             using (OpFlixContext ctx = new OpFlixContext())
@@ -44,11 +36,13 @@ namespace Senai.OpFlix.WebApi.Repositories
 
         }
 
+        //cadastrar lançamentos
         public void Cadastrar(Lancamentos lancamento)
         {
             string Query = "INSERT INTO Lancamentos(Titulo, Sinopse, IdCategoria, TempoDuracao, FilmeSerie, DataLancamento) VALUES (@Titulo, @Sinopse, @IdCategoria, @TempoDuracao, @FilmeSerie, @DataLancamento)";
             using (SqlConnection con = new SqlConnection(StringConexao))
             {
+                // insert into categorias (titulo),(sinopse),(idcategoria),(tempoduracao),(filmeserie),(datalancamento) values (@titulo),(@sinopse),(@idcategoria),(@tempoduracao),(@filmeserie),(@datalancamento);
                 SqlCommand cmd = new SqlCommand(Query, con);
                 cmd.Parameters.AddWithValue("@Titulo", lancamento.Titulo);
                 cmd.Parameters.AddWithValue("@Sinopse", lancamento.Sinopse);
@@ -61,33 +55,22 @@ namespace Senai.OpFlix.WebApi.Repositories
             }
         }
 
+        //deletar lançamentos
         public void Deletar(int id)
         {
                 using (OpFlixContext ctx = new OpFlixContext())
                 {
+                    // encontrar o item
                     Lancamentos LancamentoBuscado = ctx.Lancamentos.Find(id);
+                    // remover do contexto
                     ctx.Lancamentos.Remove(LancamentoBuscado);
+                    // efetivar as mudanças no banco de dados
                     ctx.SaveChanges();
                 }
         }
 
-        //public void Deletar(int id)
-        //{
-        //    using (GufosContext ctx = new GufosContext())
-        //    {
-        //        Categorias CategoriaBuscada = ctx.Categorias.Find(id);
-        //        ctx.Categorias.Remove(CategoriaBuscada);
-        //        ctx.SaveChanges();
-        //    }
-        //}
-
         public List<Lancamentos> Listar()
         {
-            //using (OpFlixContext ctx = new OpFlixContext())
-            //{
-            //    return ctx.Lancamentos.OrderBy(x => x.IdLancamento).ToList();
-            //}
-
             List<Lancamentos> lancamentos = new List<Lancamentos>();
 
             using (SqlConnection con = new SqlConnection(StringConexao))
@@ -97,6 +80,7 @@ namespace Senai.OpFlix.WebApi.Repositories
                 SqlDataReader rdr;
                 using (SqlCommand cmd = new SqlCommand(Query, con))
                 {
+                    // select * from lançamentos;
                     rdr = cmd.ExecuteReader();
                     while (rdr.Read())
                     {

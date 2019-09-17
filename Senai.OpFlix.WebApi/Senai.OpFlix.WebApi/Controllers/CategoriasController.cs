@@ -24,6 +24,11 @@ namespace Senai.OpFlix.WebApi.Controllers
             CategoriaRepository = new CategoriaRepository();
         }
 
+        /// <summary>
+        /// Cadastrar uma categoria.
+        /// </summary>
+        /// <param name="categoria">Categoria</param>
+        /// <returns>Mensagem de sucesso</returns>
         [Authorize(Roles = "ADMINISTRADOR")]
         [HttpPost]
         public IActionResult Cadastrar(Categorias categoria)
@@ -32,6 +37,10 @@ namespace Senai.OpFlix.WebApi.Controllers
             return Ok();     
         }
 
+        /// <summary>
+        /// Listar uma categoria
+        /// </summary
+        /// <returns>Lista com as categorias</returns>
         [Authorize(Roles = "ADMINISTRADOR")]
         [HttpGet]
         public IActionResult Listar()
@@ -39,6 +48,12 @@ namespace Senai.OpFlix.WebApi.Controllers
             return Ok(CategoriaRepository.Listar());
         }
 
+        /// <summary>
+        /// Atualiza uma categoria
+        /// </summary>
+        /// <param name="id">Busca uma Categoria por Id</param>
+        /// <param name="categoria">Retorna CategoriaBuscada</param>
+        /// <returns>Atualiza a Categoria</returns>
         [Authorize(Roles = "ADMINISTRADOR")]
         [HttpPut("{id}")]
         public IActionResult Atualizar(int id, Categorias categoria)

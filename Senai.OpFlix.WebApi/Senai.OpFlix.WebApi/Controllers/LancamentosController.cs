@@ -23,6 +23,11 @@ namespace Senai.OpFlix.WebApi.Controllers
             LancamentoRepository = new LancamentoRepository();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="lancamento"></param>
+        /// <returns></returns>
         [Authorize(Roles = "ADMINISTRADOR")]
         [HttpPost]
         public IActionResult Cadastrar(Lancamentos lancamento)
@@ -31,6 +36,10 @@ namespace Senai.OpFlix.WebApi.Controllers
             return Ok();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         [Authorize]
         [HttpGet]
         public IActionResult Listar()
@@ -38,6 +47,11 @@ namespace Senai.OpFlix.WebApi.Controllers
             return Ok(LancamentoRepository.Listar());
         }
 
+        /// <summary>
+        /// Procura um lançamento pelo seu Id
+        /// </summary>
+        /// <param name="id">Lancamentos</param>
+        /// <returns>Lancamento Buscado</returns>
         [Authorize(Roles = "ADMINISTRADOR")]
         [HttpGet("{id}")]
         public IActionResult BuscarPorId(int id)
@@ -50,6 +64,12 @@ namespace Senai.OpFlix.WebApi.Controllers
             return Ok(Lancamento);
         }
 
+        /// <summary>
+        /// Atualiza um registro no Banco
+        /// </summary>
+        /// <param name="id">Busca um registro pelo Id</param>
+        /// <param name="lancamento">Atualiza um Lançamento</param>
+        /// <returns>Ok</returns>
         [Authorize(Roles = "ADMINISTRADOR")]
         [HttpPut("{id}")]
         public IActionResult Atualizar(int id, Lancamentos lancamento)
@@ -69,24 +89,11 @@ namespace Senai.OpFlix.WebApi.Controllers
             }
         }
 
-        //[HttpPut("{id}")]
-        //public IActionResult Atualizar(int id, Categorias categoria)
-        //{
-        //    try
-        //    {
-        //        Categorias categoriaBuscada = CategoriaRepository.BuscarPorId(id);
-        //        if (categoriaBuscada == null)
-        //            return NotFound();
-        //        categoria.IdCategoria = id;
-        //        CategoriaRepository.Atualizar(categoria);
-        //        return Ok();
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        return BadRequest(new { mensagem = ex.Message });
-        //    }
-        //}
-
+        /// <summary>
+        /// Deleta um Lançamento
+        /// </summary>
+        /// <param name="id">Busca o Lançamento pela a Id</param>
+        /// <returns>Ok</returns>
         [Authorize(Roles = "ADMINISTRADOR")]
         [HttpDelete("{id}")]
         public IActionResult Deletar(int id)
