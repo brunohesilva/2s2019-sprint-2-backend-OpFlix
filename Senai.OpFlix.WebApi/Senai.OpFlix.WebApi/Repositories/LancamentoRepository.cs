@@ -26,6 +26,23 @@ namespace Senai.OpFlix.WebApi.Repositories
                 ctx.SaveChanges();
             }
         }
+
+        public List<Lancamentos> BuscarPorCategoria(int categoria)
+        {
+            using (OpFlixContext ctx = new OpFlixContext())
+            {
+                return ctx.Lancamentos.Where(x => x.IdCategoria == categoria).ToList();
+            }
+        }
+
+        public List<Lancamentos> BuscarPorData(DateTime data)
+        {
+            using (OpFlixContext ctx = new OpFlixContext())
+            {
+                return ctx.Lancamentos.Where(x => x.DataLancamento == data).ToList();
+            }
+        }
+
         // buscar lançamento por id
         public Lancamentos BuscarPorId(int id)
         {

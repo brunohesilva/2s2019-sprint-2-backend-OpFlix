@@ -28,7 +28,7 @@ namespace Senai.OpFlix.WebApi.Controllers
         /// </summary>
         /// <param name="lancamento"></param>
         /// <returns></returns>
-        [Authorize(Roles = "ADMINISTRADOR")]
+        //[Authorize(Roles = "ADMINISTRADOR")]
         [HttpPost]
         public IActionResult Cadastrar(Lancamentos lancamento)
         {
@@ -40,7 +40,7 @@ namespace Senai.OpFlix.WebApi.Controllers
         /// 
         /// </summary>
         /// <returns></returns>
-        [Authorize]
+        //[Authorize]
         [HttpGet]
         public IActionResult Listar()
         {
@@ -52,7 +52,7 @@ namespace Senai.OpFlix.WebApi.Controllers
         /// </summary>
         /// <param name="id">Lancamentos</param>
         /// <returns>Lancamento Buscado</returns>
-        [Authorize(Roles = "ADMINISTRADOR")]
+       // [Authorize(Roles = "ADMINISTRADOR")]
         [HttpGet("{id}")]
         public IActionResult BuscarPorId(int id)
         {
@@ -70,7 +70,7 @@ namespace Senai.OpFlix.WebApi.Controllers
         /// <param name="id">Busca um registro pelo Id</param>
         /// <param name="lancamento">Atualiza um Lançamento</param>
         /// <returns>Ok</returns>
-        [Authorize(Roles = "ADMINISTRADOR")]
+        //[Authorize(Roles = "ADMINISTRADOR")]
         [HttpPut("{id}")]
         public IActionResult Atualizar(int id, Lancamentos lancamento)
         {
@@ -94,12 +94,25 @@ namespace Senai.OpFlix.WebApi.Controllers
         /// </summary>
         /// <param name="id">Busca o Lançamento pela a Id</param>
         /// <returns>Ok</returns>
-        [Authorize(Roles = "ADMINISTRADOR")]
+        //[Authorize(Roles = "ADMINISTRADOR")]
         [HttpDelete("{id}")]
         public IActionResult Deletar(int id)
         {
             LancamentoRepository.Deletar(id);
             return Ok();
+        }
+
+        //[Authorize]
+        [HttpGet("listar/categoria/{categoria}")]
+        public IActionResult ListarPorCategoria (int categoria)
+        {
+            return Ok(LancamentoRepository.BuscarPorCategoria(categoria));
+        }
+
+        [HttpGet("filtroData/{data}")]
+        public IActionResult FiltrarData(DateTime data)
+        {
+            return Ok(LancamentoRepository.BuscarPorData(data));
         }
     }
 }

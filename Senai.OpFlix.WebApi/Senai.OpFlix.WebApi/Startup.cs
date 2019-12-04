@@ -66,6 +66,7 @@ namespace Senai.OpFlix.WebApi
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseCors("CorsPolicy");
             // colocar em uso
             app.UseAuthentication();
 
@@ -78,7 +79,6 @@ namespace Senai.OpFlix.WebApi
 
             app.UseMvc();
 
-            app.UseCors();
         }
     }
 }

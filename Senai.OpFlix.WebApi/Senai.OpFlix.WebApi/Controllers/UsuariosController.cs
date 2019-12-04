@@ -28,7 +28,7 @@ namespace Senai.OpFlix.WebApi.Controllers
         /// </summary>
         /// <param name="usuario">Usuarios</param>
         /// <returns>Ok</returns>
-        [Authorize(Roles = "ADMINISTRADOR")]
+        //[Authorize(Roles = "ADMINISTRADOR")]
         [HttpPost]
         public IActionResult CadastrarAdmin(Usuarios usuario)
         {

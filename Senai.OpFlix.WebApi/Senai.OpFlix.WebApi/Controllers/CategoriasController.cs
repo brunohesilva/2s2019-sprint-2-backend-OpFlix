@@ -29,7 +29,7 @@ namespace Senai.OpFlix.WebApi.Controllers
         /// </summary>
         /// <param name="categoria">Categoria</param>
         /// <returns>Mensagem de sucesso</returns>
-        [Authorize(Roles = "ADMINISTRADOR")]
+        //[Authorize(Roles = "ADMINISTRADOR")]
         [HttpPost]
         public IActionResult Cadastrar(Categorias categoria)
         {
@@ -41,7 +41,7 @@ namespace Senai.OpFlix.WebApi.Controllers
         /// Listar uma categoria
         /// </summary
         /// <returns>Lista com as categorias</returns>
-        [Authorize(Roles = "ADMINISTRADOR")]
+        //[Authorize(Roles = "ADMINISTRADOR")]
         [HttpGet]
         public IActionResult Listar()
         {
